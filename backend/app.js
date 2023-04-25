@@ -29,17 +29,19 @@ app.post("/", (req, res) => {
 });
 
 app.put("/", (req, res) => {
-  const { id, ...putData } = req.body;
-  data.userprofile[id - 1] = {
-    ...data.userprofile[id - 1],
+  const { name, ...putData } = req.body;
+  targetUser = data.userprofile.find((x) => x.name === name);
+  targetUserIdx = data.userprofile.indexOf(targetUser);
+  data.userprofile[targetUserIdx] = {
+    ...targetUser,
     ...putData,
   };
   res.send(data.userprofile);
 });
 
 app.delete("/", (req, res) => {
-  const { id } = req.body;
-  data.userprofile = data.userprofile.filter((x) => x.id !== id);
+  const { name } = req.body;
+  data.userprofile = data.userprofile.filter((x) => x.name !== name);
   res.send(data.userprofile);
 });
 
