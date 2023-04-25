@@ -1,47 +1,19 @@
 import "./App.css";
 import AddProfile from "./components/AddProfile";
 import ProfileCard from "./components/profileCard";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
-import { PutDataProps, userProfile } from "./store/mutateState";
+import { userProfile } from "./store/mutateState";
+import { useQueryProfile } from "./api/hooks/profile";
 
 function App() {
-  const queryClient = useQueryClient();
-
-  const { data, isLoading, isError } = useQuery(["profileData"], () =>
-    axios.get("http://localhost:3000")
-  );
+  const { GET, POST, PUT } = useQueryProfile();
+  const { data, isLoading, isError } = GET;
 
   const mutateFn: (props: userProfile) => void = (props: userProfile) => {
     const match = data?.data.userprofile.filter(
       ({ name }: { name: string }) => name === props.name
     );
-    return match.length === 1 ? putFn.mutate(props) : postFn.mutate(props);
+    return match.length === 1 ? PUT.mutate(props) : POST.mutate(props);
   };
-
-  const postFn = useMutation(
-    (postData: userProfile) => axios.post("http://localhost:3000", postData),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: ["profileData"] });
-      },
-      onError: (e) => {
-        console.log(e);
-      },
-    }
-  );
-
-  const putFn = useMutation(
-    (putData: PutDataProps) => axios.put("http://localhost:3000", putData),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: ["profileData"] });
-      },
-      onError: (e) => {
-        console.log(e);
-      },
-    }
-  );
 
   if (isLoading) {
     return <span>Loading...</span>;
@@ -63,7 +35,7 @@ function App() {
         <section className="profile">
           <h2>프로필 목록</h2>
           <section>
-            {data?.data.userprofile?.map(
+            {data?.data.userprofile.map(
               ({ name, nickname, mbti, birth, instagram }: userProfile) => (
                 <ProfileCard
                   name={name}
