@@ -38,8 +38,8 @@ app.put("/", (req, res) => {
 });
 
 app.delete("/", (req, res) => {
-  const { id } = req.body;
-  data.userprofile = data.userprofile.filter((x) => x.id !== id);
+  const { name } = req.body;
+  data.userprofile = data.userprofile.filter((x) => x.name !== name);
   res.send(data.userprofile);
 });
 
