@@ -1,4 +1,4 @@
-import { mutateState, userProfile } from "../store/mutateState";
+import { defaultState, mutateState, userProfile } from "../store/mutateState";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 
 const AddProfile = ({
@@ -23,6 +23,7 @@ const AddProfile = ({
         onSubmit={(e) => {
           e.preventDefault();
           mutateFn({ name, nickname, mbti, birth, instagram });
+          setMutateState(defaultState);
         }}
       >
         <label htmlFor="name">이름</label>

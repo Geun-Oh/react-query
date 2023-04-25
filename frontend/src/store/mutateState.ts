@@ -20,7 +20,7 @@ export interface DeleteDataProps {
     name: string;
 }
 
-const defaultState: userProfile = {
+export const defaultState: userProfile = {
     name: "",
     nickname: "",
     mbti: "",
