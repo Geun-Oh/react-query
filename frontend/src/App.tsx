@@ -1,6 +1,14 @@
-import './App.css';
+import "./App.css";
+import ProfileCard, { ProfileCardProps } from "./components/profileCard";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 function App() {
+  const { data } = useQuery({
+    queryKey: ["profileData"],
+    queryFn: () => axios.get("http://localhost:3000"),
+  });
+
   return (
     <>
       <header>
@@ -8,54 +16,31 @@ function App() {
       </header>
       <main>
         <nav>
-          <button className='profile_add_btn'>프로필 추가</button>
+          <button type="button" className="profile_add_btn">
+            프로필 추가
+          </button>
         </nav>
         <section>
-          <article className='profile_card'>
-            <ul>
-              <li>이름 : 박현지</li>
-              <li>별명 : 엘사</li>
-              <li>MBTI : ESFJ</li>
-              <li>생일 : 2000.12.15</li>
-              <li>인스타그램 : @wasabiihater</li>
-            </ul>
-          </article>
-          <article className='profile_card'>
-            <ul>
-              <li>이름 : 박현지</li>
-              <li>별명 : 엘사</li>
-              <li>MBTI : ESFJ</li>
-              <li>생일 : 2000.12.15</li>
-              <li>인스타그램 : @wasabiihater</li>
-            </ul>
-          </article>
-          <article className='profile_card'>
-            <ul>
-              <li>이름 : 박현지</li>
-              <li>별명 : 엘사</li>
-              <li>MBTI : ESFJ</li>
-              <li>생일 : 2000.12.15</li>
-              <li>인스타그램 : @wasabiihater</li>
-            </ul>
-          </article>
-          <article className='profile_card'>
-            <ul>
-              <li>이름 : 박현지</li>
-              <li>별명 : 엘사</li>
-              <li>MBTI : ESFJ</li>
-              <li>생일 : 2000.12.15</li>
-              <li>인스타그램 : @wasabiihater</li>
-            </ul>
-          </article>
-          <article className='profile_card'>
-            <ul>
-              <li>이름 : 박현지</li>
-              <li>별명 : 엘사</li>
-              <li>MBTI : ESFJ</li>
-              <li>생일 : 2000.12.15</li>
-              <li>인스타그램 : @wasabiihater</li>
-            </ul>
-          </article>
+          {data?.data.userprofile.map(
+            ({
+              id,
+              name,
+              nickname,
+              mbti,
+              birth,
+              instagram,
+            }: ProfileCardProps) => (
+              <ProfileCard
+                id={id}
+                name={name}
+                nickname={nickname}
+                mbti={mbti}
+                birth={birth}
+                instagram={instagram}
+                key={id}
+              />
+            )
+          )}
         </section>
       </main>
     </>
