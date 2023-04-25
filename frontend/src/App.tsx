@@ -1,18 +1,18 @@
-import { useState } from 'react';
-import './App.css';
-import AddProfile from './components/AddProfile';
-import ProfileCard, { ProfileCardProps } from './components/ProfileCard';
-import { useQuery, useMutation } from '@tanstack/react-query';
-import axios from 'axios';
+import { useState } from "react";
+import "./App.css";
+import AddProfile from "./components/AddProfile";
+import ProfileCard, { ProfileCardProps } from "./components/profileCard";
+import { useQuery, useMutation } from "@tanstack/react-query";
+import axios from "axios";
 
 function App() {
   const { data } = useQuery({
-    queryKey: ['profileData'],
-    queryFn: () => axios.get('http://localhost:3000'),
+    queryKey: ["profileData"],
+    queryFn: () => axios.get("http://localhost:3000"),
   });
 
   const postFn = useMutation({
-    mutationFn: (postData: ProfileCardProps) => axios.post('/', postData),
+    mutationFn: (postData: ProfileCardProps) => axios.post("/", postData),
   });
 
   return (
@@ -21,14 +21,21 @@ function App() {
         <h1>💙 웹 심화 스터디 프로필 만들기 💙</h1>
       </header>
       <main>
-        <section className='profile_menu'>
+        <section className="profile_menu">
           <AddProfile postFn={postFn} />
         </section>
-        <section className='profile'>
+        <section className="profile">
           <h2>프로필 목록</h2>
           <section>
             {data?.data.userprofile.map(
-              ({ id, name, nickname, mbti, birth, instagram }: ProfileCardProps) => (
+              ({
+                id,
+                name,
+                nickname,
+                mbti,
+                birth,
+                instagram,
+              }: ProfileCardProps) => (
                 <ProfileCard
                   id={id}
                   name={name}
@@ -38,7 +45,7 @@ function App() {
                   instagram={instagram}
                   key={id}
                 />
-              ),
+              )
             )}
           </section>
         </section>
