@@ -16,6 +16,10 @@ export interface PutDataProps {
     instagram?: string;
 }
 
+export interface DeleteDataProps {
+    name: string;
+}
+
 const defaultState: userProfile = {
     name: "",
     nickname: "",
