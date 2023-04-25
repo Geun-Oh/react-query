@@ -23,9 +23,10 @@ const AddProfile = ({
     <section className="profile_add">
       <h2>프로필 추가</h2>
       <form
-        onSubmit={() =>
-          postFn.mutate({ name, nickname, mbti, birth: birthday, instagram })
-        }
+        onSubmit={(e) => {
+          e.preventDefault();
+          postFn.mutate({ name, nickname, mbti, birth: birthday, instagram });
+        }}
       >
         <label htmlFor="name">이름</label>
         <input
