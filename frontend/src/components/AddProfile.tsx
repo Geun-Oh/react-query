@@ -7,8 +7,8 @@ const AddProfile = ({
   mutateFn: (props: userProfile) => void;
 }) => {
   const { name, nickname, mbti, birth, instagram } =
-    useRecoilValue(mutateState);
-  const setMutateState = useSetRecoilState(mutateState);
+    useRecoilValue<userProfile>(mutateState);
+  const setMutateState = useSetRecoilState<userProfile>(mutateState);
 
   const handleMutateState = (event: React.ChangeEvent<HTMLInputElement>) =>
     setMutateState((prev) => ({
@@ -22,7 +22,6 @@ const AddProfile = ({
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          console.log({ name, nickname, mbti, birth, instagram });
           mutateFn({ name, nickname, mbti, birth, instagram });
         }}
       >
