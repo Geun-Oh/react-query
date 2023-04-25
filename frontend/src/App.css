@@ -58,6 +58,7 @@ main {
 .profile > section {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   gap: 1rem;
 }
 
@@ -90,12 +91,23 @@ input:focus {
   font-weight: 500;
   border-radius: 1rem;
 }
+
 .profile_card {
-  width: 24rem;
+  width: 40%;
   padding: 2rem;
 
   border-radius: 2rem;
   background-color: #3d5a80;
+}
+
+.profile_card > button {
+  padding: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+
+  background-color: #e0fbfc;
+  border: none;
+  border-radius: 1rem;
 }
 
 .profile_card > ul {
