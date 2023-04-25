@@ -7,15 +7,9 @@ export interface ProfileCardProps {
   instagram: string;
 }
 
-function ProfileCard({
-  name,
-  nickname,
-  mbti,
-  birth,
-  instagram,
-}: ProfileCardProps) {
+function ProfileCard({ name, nickname, mbti, birth, instagram }: ProfileCardProps) {
   return (
-    <article className="profile_card">
+    <article className='profile_card'>
       <ul>
         <li>이름 : {name}</li>
         <li>별명 : {nickname}</li>

@@ -25,34 +25,71 @@ h1 {
   font-size: 3.6rem;
 }
 
+h2 {
+  padding: 0.5rem 2rem;
+  font-size: 2.4rem;
+  text-align: center;
+}
+
 main {
+  display: flex;
+  gap: 2rem;
+
   padding: 2rem;
 }
 
-nav {
-  height: 5rem;
-  padding: 1rem;
+.profile_menu {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  width: 30%;
+  background-color: azure;
 }
 
-.profile_add_btn {
-  float: right;
+.profile {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  width: 70%;
+}
+
+.profile > section {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.profile_add > form > label {
+  margin-right: 2rem;
+
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+input:focus {
+  outline: none;
+}
+
+.profile_add > form > input {
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+
+  font-size: 1.8rem;
+  border: none;
+  border-bottom: solid #aaaaaa 1px;
+  background: none;
+}
+
+#profile_add_btn {
   padding: 1rem;
 
   color: white;
-  font-size: 2rem;
-
-  background: inherit;
-  background-color: #293241;
-  border: none;
-  border-radius: 1.5rem;
+  background-color: #3d5a80;
+  font-weight: 500;
+  border-radius: 1rem;
 }
-
-section {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 1rem;
-}
-
 .profile_card {
   width: 24rem;
   padding: 2rem;
@@ -61,11 +98,11 @@ section {
   background-color: #3d5a80;
 }
 
-ul {
+.profile_card > ul {
   padding: 0;
 }
 
-ul > li {
+.profile_card > ul > li {
   list-style: none;
   line-height: 1.5;
 
