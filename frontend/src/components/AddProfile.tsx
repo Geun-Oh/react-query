@@ -1,18 +1,18 @@
 import { useState } from 'react';
+import { UseMutationResult } from '@tanstack/react-query';
+import { ProfileCardProps } from './ProfileCard';
 
-const AddProfile = () => {
+const AddProfile = ({ postFn }: { postFn: UseMutationResult }) => {
   const [name, setName] = useState('');
   const [nickname, setNickname] = useState('');
   const [mbti, setMbti] = useState('');
   const [birthday, setBirthday] = useState('');
   const [instagram, setInstagram] = useState('');
 
-  const handleSubmit = () => {};
-
   return (
     <section className='profile_add'>
       <h2>프로필 추가</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={() => postFn({ name, nickname, mbti, birthday, instagram })}>
         <label htmlFor='name'>이름</label>
         <input
           type='text'

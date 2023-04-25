@@ -1,13 +1,18 @@
+import { useState } from 'react';
 import './App.css';
 import AddProfile from './components/AddProfile';
 import ProfileCard, { ProfileCardProps } from './components/ProfileCard';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 
 function App() {
   const { data } = useQuery({
     queryKey: ['profileData'],
     queryFn: () => axios.get('http://localhost:3000'),
+  });
+
+  const postFn = useMutation({
+    mutationFn: (postData: ProfileCardProps) => axios.post('/', postData),
   });
 
   return (
@@ -17,7 +22,7 @@ function App() {
       </header>
       <main>
         <section className='profile_menu'>
-          <AddProfile />
+          <AddProfile postFn={postFn} />
         </section>
         <section className='profile'>
           <h2>프로필 목록</h2>
