@@ -1,0 +1,36 @@
+{
+  "userprofile": [
+    {
+      "id": 1,
+      "name": "박현지",
+      "nickname": "엘사",
+      "mbti": "ESFJ",
+      "birth": "2000.12.15",
+      "instagram": "@wasabiihater"
+    },
+    {
+      "id": 2,
+      "name": "오형근",
+      "nickname": "주먹밥",
+      "mbti": "ENFJ",
+      "birth": "2001.11.24",
+      "instagram": "@eternalsp_ring"
+    },
+    {
+      "id": 3,
+      "name": "김서현",
+      "nickname": "서빵",
+      "mbti": "ESFJ",
+      "birth": "2001.12.19",
+      "instagram": "@sh._.ine_"
+    },
+    {
+      "id": 4,
+      "name": "정재욱",
+      "nickname": "나무",
+      "mbti": "ESFJ",
+      "birth": "1997.11.29",
+      "instagram": "@jw_o_ok"
+    }
+  ]
+}
