@@ -1,27 +1,22 @@
+import { useSetRecoilState } from "recoil";
+import { mutateState, userProfile } from "../store/mutateState";
+
 export interface ProfileCardProps {
   profile: userProfile;
   handleModify: (data: userProfile) => void;
   handleDelete: (data: userProfile) => void;
 }
 
-export interface userProfile {
-  id?: number;
-  name: string;
-  nickname: string;
-  mbti: string;
-  birth: string;
-  instagram: string;
-}
-
-function ProfileCard({ profile, handleModify, handleDelete }: ProfileCardProps) {
+function ProfileCard(profile: userProfile) {
   const { name, nickname, mbti, birth, instagram } = profile;
+  const setMutateState = useSetRecoilState(mutateState);
 
   return (
-    <article className='profile_card'>
+    <article className="profile_card">
       <button
-        type='button'
+        type="button"
         onClick={() => {
-          handleModify(profile);
+          setMutateState(profile);
         }}
       >
         수정

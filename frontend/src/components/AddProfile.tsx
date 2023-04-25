@@ -1,88 +1,82 @@
-import { UseMutationResult } from '@tanstack/react-query';
-import { AxiosResponse } from 'axios';
-import { useState } from 'react';
-import { ProfileCardProps, userProfile } from './ProfileCard';
+import { mutateState, userProfile } from "../store/mutateState";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 
 const AddProfile = ({
-  postFn,
+  mutateFn,
 }: {
-  postFn: UseMutationResult<AxiosResponse<any, any>, unknown, userProfile, unknown>;
+  mutateFn: (props: userProfile) => void;
 }) => {
-  const [name, setName] = useState('');
-  const [nickname, setNickname] = useState('');
-  const [mbti, setMbti] = useState('');
-  const [birthday, setBirthday] = useState('');
-  const [instagram, setInstagram] = useState('');
+  const { name, nickname, mbti, birth, instagram } =
+    useRecoilValue(mutateState);
+  const setMutateState = useSetRecoilState(mutateState);
 
-  const handleModify = ({ name, nickname, mbti, birth, instagram }: userProfile) => {
-    setName(name);
-    setNickname(nickname);
-    setMbti(mbti);
-    setBirthday(birth);
-    setInstagram(instagram);
-  };
-  const handleDelete = (profile: userProfile) => {};
+  const handleMutateState = (event: React.ChangeEvent<HTMLInputElement>) =>
+    setMutateState((prev) => ({
+      ...prev,
+      [event.target.id]: event.target.value,
+    }));
 
   return (
-    <section className='profile_add'>
+    <section className="profile_add">
       <h2>프로필 추가/수정</h2>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          postFn.mutate({ name, nickname, mbti, birth: birthday, instagram });
+          console.log({ name, nickname, mbti, birth, instagram });
+          mutateFn({ name, nickname, mbti, birth, instagram });
         }}
       >
-        <label htmlFor='name'>이름</label>
+        <label htmlFor="name">이름</label>
         <input
-          type='text'
-          id='name'
-          name='name'
+          type="text"
+          id="name"
+          name="name"
           value={name}
-          onChange={(event) => setName(event.target.value)}
+          onChange={(e) => handleMutateState(e)}
         />
         <br />
 
-        <label htmlFor='nickname'>별명</label>
+        <label htmlFor="nickname">별명</label>
         <input
-          type='text'
-          id='nickname'
-          name='nickname'
+          type="text"
+          id="nickname"
+          name="nickname"
           value={nickname}
-          onChange={(event) => setNickname(event.target.value)}
+          onChange={(e) => handleMutateState(e)}
         />
         <br />
 
-        <label htmlFor='mbti'>MBTI</label>
+        <label htmlFor="mbti">MBTI</label>
         <input
-          type='text'
-          id='mbti'
-          name='mbti'
+          type="text"
+          id="mbti"
+          name="mbti"
           value={mbti}
-          onChange={(event) => setMbti(event.target.value)}
+          onChange={(e) => handleMutateState(e)}
         />
         <br />
 
-        <label htmlFor='birthday'>생일</label>
+        <label htmlFor="birthday">생일</label>
         <input
-          type='text'
-          id='birthday'
-          name='birthday'
-          value={birthday}
-          onChange={(event) => setBirthday(event.target.value)}
+          type="text"
+          id="birth"
+          name="birth"
+          value={birth}
+          onChange={(e) => handleMutateState(e)}
         />
         <br />
 
-        <label htmlFor='instagram'>인스타그램</label>
+        <label htmlFor="instagram">인스타그램</label>
         <input
-          type='text'
-          id='instagram'
-          name='instagram'
+          type="text"
+          id="instagram"
+          name="instagram"
           value={instagram}
-          onChange={(event) => setInstagram(event.target.value)}
+          onChange={(e) => handleMutateState(e)}
         />
         <br />
 
-        <input id='profile_add_btn' type='submit' value='추가' />
+        <input id="profile_add_btn" type="submit" value="추가/수정" />
       </form>
     </section>
   );
