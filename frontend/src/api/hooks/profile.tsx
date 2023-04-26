@@ -1,15 +1,15 @@
-import { useQueryClient } from "@tanstack/react-query";
-
 export const useQueryProfile = () => {
-  const baseURL = "http://localhost:3000";
+  const baseURL = 'http://localhost:3000';
 
-  const GET;
+  // QueryClient를 가져와주세요!
 
-  const POST;
+  const GET = ; // 프로필 조회
 
-  const PUT;
+  const POST = ; // 프로필 추가
 
-  const DELETE;
+  const PUT = ; // 프로필 수정
+
+  const DELETE = ; // 프로필 삭제
 
   return {
     GET,

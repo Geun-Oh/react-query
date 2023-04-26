@@ -1,20 +1,20 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
-import "./index.css";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { RecoilRoot } from "recoil";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App.tsx';
+import './index.css';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { RecoilRoot } from 'recoil';
 
-const queryClient = new QueryClient();
+// queryClient를 생성해주세요!
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <RecoilRoot>
-      <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools initialIsOpen={true} />
+      {/* queryClient를 전달해주세요! */}
+      <QueryClientProvider>
+        {/* Devtools를 추가해주세요! */}
         <App />
       </QueryClientProvider>
     </RecoilRoot>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
