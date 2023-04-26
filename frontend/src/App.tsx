@@ -2,11 +2,10 @@ import "./App.css";
 import AddProfile from "./components/AddProfile";
 import ProfileCard from "./components/profileCard";
 import { userProfile } from "./store/mutateState";
-import { useQueryProfile } from "./api/hooks/profile";
 
 function App() {
-  const { GET, POST, PUT } = useQueryProfile();
-  const { data, isLoading, isError } = GET;
+  // get, post, put 쿼리를 가져와주세요!
+  // get 쿼리에서 필요한 데이터를 구조분해 할당으로 가져와주세요!
 
   const mutateFn: (props: userProfile) => void = (props: userProfile) => {
     const match = data?.data.userprofile.filter(
@@ -15,13 +14,8 @@ function App() {
     return match.length === 1 ? PUT.mutate(props) : POST.mutate(props);
   };
 
-  if (isLoading) {
-    return <span>Loading...</span>;
-  }
-
-  if (isError) {
-    return <span>Error!!</span>;
-  }
+  // 로딩 중일 때 반환할 컴포넌트를 지정해주세요!
+  // 에러 발생 시 반환할 컴포넌트를 지정해주세요!
 
   return (
     <>

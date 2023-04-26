@@ -1,6 +1,5 @@
-import { useSetRecoilState } from 'recoil';
-import { mutateState, userProfile } from '../store/mutateState';
-import { useQueryProfile } from '../api/hooks/profile';
+import { useSetRecoilState } from "recoil";
+import { mutateState, userProfile } from "../store/mutateState";
 
 export interface ProfileCardProps {
   profile: userProfile;
@@ -9,14 +8,14 @@ export interface ProfileCardProps {
 }
 
 function ProfileCard(profile: userProfile) {
-  const { DELETE } = useQueryProfile();
+  // 삭제 쿼리를 가져와주세요!
   const { name, nickname, mbti, birth, instagram } = profile;
   const setMutateState = useSetRecoilState<userProfile>(mutateState);
 
   return (
-    <article className='profile_card'>
+    <article className="profile_card">
       <button
-        type='button'
+        type="button"
         onClick={() => {
           setMutateState(profile);
         }}
@@ -24,10 +23,10 @@ function ProfileCard(profile: userProfile) {
         수정
       </button>
       <button
-        type='button'
+        type="button"
         onClick={(e) => {
           e.preventDefault();
-          DELETE.mutate({ name });
+          // 가져온 삭제 쿼리를 이용해 데이터를 삭제해주세요!
         }}
       >
         삭제
