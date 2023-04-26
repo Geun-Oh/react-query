@@ -1,6 +1,6 @@
-import { useSetRecoilState } from "recoil";
-import { mutateState, userProfile } from "../store/mutateState";
-import { useQueryProfile } from "../api/hooks/profile";
+import { useSetRecoilState } from 'recoil';
+import { mutateState, userProfile } from '../store/mutateState';
+import { useQueryProfile } from '../api/hooks/profile';
 
 export interface ProfileCardProps {
   profile: userProfile;
@@ -14,9 +14,9 @@ function ProfileCard(profile: userProfile) {
   const setMutateState = useSetRecoilState<userProfile>(mutateState);
 
   return (
-    <article className="profile_card">
+    <article className='profile_card'>
       <button
-        type="button"
+        type='button'
         onClick={() => {
           setMutateState(profile);
         }}
@@ -24,7 +24,7 @@ function ProfileCard(profile: userProfile) {
         수정
       </button>
       <button
-        type="button"
+        type='button'
         onClick={(e) => {
           e.preventDefault();
           DELETE.mutate({ name });
