@@ -16,6 +16,12 @@ app.use(
 
 app.get("/", (req, res) => {
   res.send(data);
+
+  // setTimeout(() => {
+  //   res.send(data);
+  // }, 2000);
+
+  // throw new Error("error");
 });
 
 app.post("/", (req, res) => {
